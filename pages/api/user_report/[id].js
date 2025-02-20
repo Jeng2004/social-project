@@ -11,6 +11,7 @@ export const config = {
 
 export default async function handler(req, res) {
 <<<<<<< HEAD
+<<<<<<< HEAD
   const { id } = req.query; // Get postId parameter from the URL
   console.log('Request received for postId:', id);
 
@@ -26,6 +27,9 @@ export default async function handler(req, res) {
         });
 =======
   if (req.method === 'POST') {
+=======
+  if (req.method === 'POST') {
+>>>>>>> parent of d4b0fbb (gg)
     const { fields } = await new Promise((resolve, reject) => {
       const form = new IncomingForm();
       form.parse(req, (err, fields) => {
@@ -39,6 +43,7 @@ export default async function handler(req, res) {
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     console.log("Received fields:", fields);
     const { reason, userId } = fields;
 
@@ -50,10 +55,17 @@ export default async function handler(req, res) {
     // Validate required fields
     if (!reason || !userId || !postId) {
 >>>>>>> parent of d4b0fbb (gg)
+=======
+    const { reason, userId, postId } = fields;
+
+    // Validate required fields
+    if (!reason || !userId || !postId) {
+>>>>>>> parent of d4b0fbb (gg)
       return res.status(400).json({ message: 'Reason, userId, and postId are required.' });
     }
 
     try {
+<<<<<<< HEAD
 <<<<<<< HEAD
       // Check if user exists
       const userExists = await prisma.user.findUnique({
@@ -75,6 +87,8 @@ export default async function handler(req, res) {
 
       console.log("Creating a new report for the post...");
 =======
+=======
+>>>>>>> parent of d4b0fbb (gg)
       // Create a new report
 >>>>>>> parent of d4b0fbb (gg)
       const newReport = await prisma.report.create({
@@ -95,6 +109,7 @@ export default async function handler(req, res) {
           : "Unknown error";
       return res.status(500).json({ message: 'Error creating report.', detail: errorMessage });
     }
+<<<<<<< HEAD
 <<<<<<< HEAD
     
     
@@ -118,6 +133,14 @@ export default async function handler(req, res) {
     return res.status(405).end(`Method ${req.method} Not Allowed`);
   }
 }
+=======
+  } else {
+    res.setHeader('Allow', ['POST']);
+    return res.status(405).end(`Method ${req.method} Not Allowed`);
+  }
+}
+
+>>>>>>> parent of d4b0fbb (gg)
 =======
   } else {
     res.setHeader('Allow', ['POST']);
