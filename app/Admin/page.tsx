@@ -10,7 +10,7 @@ interface Report {
 }
 
 export default function ReportPage() {
-  // Use state to hold reports
+  // ใช้ state เพื่อเก็บข้อมูลรายงาน
   const [reports, setReports] = useState<Report[]>([
     { id: 1, username: "nam", message: "Users have reported the command I just don’t like it." },
     { id: 2, username: "fah", message: "Users have reported the command I just don’t like it." },
@@ -23,7 +23,22 @@ export default function ReportPage() {
     { id: 9, username: "kaika", message: "A report regarding command issues." },
   ]);
 
-  // Function to handle deletion
+  // เพิ่ม state สำหรับการเปิด/ปิด Modal
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedPost, setSelectedPost] = useState<Report | null>(null);
+
+  // ฟังก์ชันเพื่อเปิด Modal
+  const openModal = (report: Report) => {
+    setSelectedPost(report);
+    setIsModalOpen(true);
+  };
+
+  // ฟังก์ชันเพื่อปิด Modal
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
+  // ฟังก์ชันสำหรับการลบโพสต์
   const handleDelete = (id: number) => {
     setReports(prevReports => prevReports.filter(report => report.id !== id));
   };
@@ -41,7 +56,13 @@ export default function ReportPage() {
                 <div className={styles.message}>{report.message}</div>
               </div>
               <div className={styles.actions}>
-                <button className={`${styles.button} ${styles.detail}`}>Detail</button>
+                {/* ปุ่ม Detail ที่เปิด Modal */}
+                <button 
+                  className={`${styles.button} ${styles.detail}`} 
+                  onClick={() => openModal(report)}
+                >
+                  Detail
+                </button>
                 <button 
                   className={`${styles.button} ${styles.delete}`} 
                   onClick={() => handleDelete(report.id)}
@@ -53,6 +74,29 @@ export default function ReportPage() {
           ))}
         </ul>
       </div>
+
+      {/* โมดอลที่แสดงเมื่อคลิกปุ่ม Detail */}
+      {isModalOpen && selectedPost && (
+        <div className={styles.modalOverlay}>
+          <div className={styles.modalContent}>
+            <h2 className={styles.modalTitle}> Detail</h2>
+            <div className={styles.postDetailContainer}>
+              <div className={styles.postHeader}>
+                <div className={styles.username}>{selectedPost.username}</div>
+                <div className={styles.message}>{selectedPost.message}</div>
+              </div>
+              <div className={styles.actions}>
+                <button 
+                  className={styles.cancelButton} 
+                  onClick={closeModal}
+                >
+                  Close
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
