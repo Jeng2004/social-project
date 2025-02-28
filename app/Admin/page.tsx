@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import styles from "./Admin.module.css";
 
 interface Report {
@@ -10,7 +11,7 @@ interface Report {
 }
 
 export default function ReportPage() {
-  // ใช้ state เพื่อเก็บข้อมูลรายงาน
+  const router = useRouter();
   const [reports, setReports] = useState<Report[]>([
     { id: 1, username: "nam", message: "Users have reported the command I just don’t like it." },
     { id: 2, username: "fah", message: "Users have reported the command I just don’t like it." },
@@ -23,28 +24,42 @@ export default function ReportPage() {
     { id: 9, username: "kaika", message: "A report regarding command issues." },
   ]);
 
-  // เพิ่ม state สำหรับการเปิด/ปิด Modal
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedPost, setSelectedPost] = useState<Report | null>(null);
+  const [activeTab, setActiveTab] = useState("reportPost");
 
-  // ฟังก์ชันเพื่อเปิด Modal
   const openModal = (report: Report) => {
     setSelectedPost(report);
     setIsModalOpen(true);
   };
 
-  // ฟังก์ชันเพื่อปิด Modal
   const closeModal = () => {
     setIsModalOpen(false);
   };
 
-  // ฟังก์ชันสำหรับการลบโพสต์
   const handleDelete = (id: number) => {
     setReports(prevReports => prevReports.filter(report => report.id !== id));
   };
 
   return (
     <div className={styles.container}>
+      <div className={styles.sidebar}>
+        <button
+          className={`${styles.menuItem} ${activeTab === "reportPost" ? styles.active : ""}`}
+          onClick={() => setActiveTab("reportPost")}
+        >
+          Report a post
+        </button>
+        <button
+          className={`${styles.menuItem} ${activeTab === "reportComment" ? styles.active : ""}`}
+          onClick={() => {
+            setActiveTab("reportComment");
+            router.push("/App/Admin/comment/page.tsx");
+          }}
+        >
+          Report a Comment
+        </button>
+      </div>
       <div className={styles.card}>
         <h2 className={styles.title}>Report post</h2>
         <ul className={styles.reportList}>
@@ -56,7 +71,6 @@ export default function ReportPage() {
                 <div className={styles.message}>{report.message}</div>
               </div>
               <div className={styles.actions}>
-                {/* ปุ่ม Detail ที่เปิด Modal */}
                 <button 
                   className={`${styles.button} ${styles.detail}`} 
                   onClick={() => openModal(report)}
@@ -74,8 +88,6 @@ export default function ReportPage() {
           ))}
         </ul>
       </div>
-
-      {/* โมดอลที่แสดงเมื่อคลิกปุ่ม Detail */}
       {isModalOpen && selectedPost && (
         <div className={styles.modalOverlay}>
           <div className={styles.modalContent}>

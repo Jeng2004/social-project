@@ -177,3 +177,60 @@
   cursor:
    pointer;
 }
+
+/* Sidebar */
+.sidebar {
+  background-color: #fefefe;
+  width: 280px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* เปลี่ยนจาก space-between เป็น flex-start เพื่อให้ปุ่มชิดกัน */
+  padding: 2rem 1rem;
+  transition: width .3s;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  border-right: 2px solid #ebebeb;
+}
+
+.sidebar.collapsed {
+  width: 80px;
+  padding: 2rem 0.5rem;
+}
+
+.sidebarNav ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebarNav ul li {
+  margin-bottom: 0; /* เอาระยะห่างระหว่างเมนูออก */
+}
+
+.menuItem {
+  background: none;
+  border: none;
+  text-align: left;
+  padding: 0.5rem 1rem;
+  width: 100%;
+  font-size: 16px;
+  color: #333;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  transition: background 0.3s;
+  margin-bottom: 0; /* เอาระยะห่างด้านล่างของปุ่มออก */
+}
+
+.menuItem:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.active {
+  color: red;
+  font-weight: bold;
+}

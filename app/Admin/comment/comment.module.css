@@ -1,0 +1,222 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f8f9fa;
+  }
+  
+  .card {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 800px;
+    margin: 20px;
+  }
+  
+  .title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .reportList {
+    list-style: none;
+    padding: 0;
+    max-height: 400px;  /* กำหนดความสูงสูงสุด */
+    overflow-y: auto;   /* ทำให้เลื่อนในแนวตั้งได้ */
+  }
+  
+  .reportItem {
+    display: flex;
+    align-items: center;
+    background: #f1f3f5;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+  }
+  
+  .avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #ccc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: bold;
+    margin-right: 10px;
+  }
+  
+  .text {
+    flex-grow: 1;
+  }
+  
+  .username {
+    font-weight: bold;
+  }
+  
+  .message {
+    color: #868e96;
+    font-size: 14px;
+  }
+  
+  .actions {
+    display: flex;
+    gap: 8px;
+  }
+  
+  .button {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .detail {
+    background: #495057;
+    color: white;
+  }
+  
+  .delete {
+    background: #d9534f;
+    color: white;
+  }
+  
+  .Sidebar-module__sTeV3q__sidebar {
+    background-color: #fefefe;
+    width: 280px;
+    height: 100vh;
+    display: flex
+  ;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 2rem 1rem;
+    transition: width .3s;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    border-right: 2px solid #ebebeb;
+  }
+  .container {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+.card {
+  width: 100%;
+  max-width: 600px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.reportList {
+  list-style: none;
+  padding: 0;
+}
+
+.reportItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #eee;
+  padding: 10px 0;
+}
+
+.avatar {
+  font-size: 24px;
+}
+
+.text {
+  flex-grow: 1;
+  margin-left: 10px;
+}
+
+.username {
+  font-weight: bold;
+}
+
+.message {
+  font-size: 14px;
+  color: #555;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.button {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.detail {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.delete {
+  background-color: #f44336;
+  color: white;
+}
+
+.reportComment {
+  background-color: #FF9800;
+  color: white;
+}
+
+.reportComment:hover {
+  background-color: #f57c00;
+}
+
+/* ปรับตำแหน่งปุ่ม Report comment ให้ไปอยู่ฝั่งซ้าย */
+.actions {
+  display: flex;
+  flex-direction: column; /* ใช้แนวตั้ง */
+  align-items: flex-start; /* จัดให้อยู่ทางซ้าย */
+}
+
+.actions .button {
+  width: 100%; /* ให้ปุ่มเต็มความกว้าง */
+  margin-bottom: 10px;
+}
+
+.card {
+  position: relative;
+}
+
+.reportList {
+  position: relative;
+}
+
+/* ปรับการจัดตำแหน่งของปุ่ม Report comment ให้อยู่ทางซ้าย */
+.reportComment {
+  position: absolute;
+  left: -150px; /* เลื่อนให้ปุ่มอยู่ทางซ้าย */
+  top: 0;
+  background-color: #FF9800;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.reportComment:hover {
+  background-color: #f57c00;
+}
